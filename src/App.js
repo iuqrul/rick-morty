@@ -1,11 +1,19 @@
 import imageRickMorty from './img/rick-morty.png';
 import './App.css';
+import { useState } from 'react';
 
 function App() {
 
-  const reqApi = () => {
-    console.log("Clicking");
-  }
+  const [characters, setCharacters] = useState(null);
+
+  const reqApi = async () => {
+
+    const api = await fetch('https://rickandmortyapi.com/api/character');
+    const characterApi = await api.json();
+
+    setCharacters(characterApi.results);
+
+  };
 
   return (
     <div className="App">
@@ -18,6 +26,6 @@ function App() {
       </header>
     </div>
   );
-}
+};
 
 export default App;
